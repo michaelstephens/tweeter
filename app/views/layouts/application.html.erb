@@ -7,8 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <%= link_to "Tweeter", root_path, class: "navbar-brand" %>
+      </div>
+    </div>
+  </nav>
 
-<%= yield %>
+  <div class="content">
+    <%= yield %>
+  </div>
 
 </body>
 </html>

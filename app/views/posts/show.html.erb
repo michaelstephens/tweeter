@@ -1,0 +1,10 @@
+<h1>
+  <%= link_to fa_icon("arrow-left"), posts_path %>
+  <%= @text %>
+</h1>
+<div class="media">
+  <div class="media-body">
+    <h4 class="media-heading"><%= @post.user %></h4>
+    <%= @post %>
+  </div>
+</div>

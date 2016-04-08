@@ -3,4 +3,8 @@ class Post < ActiveRecord::Base
 
   validates :content, presence: true
   validates :user_id, presence: true
+
+  def to_s
+    content
+  end
 end

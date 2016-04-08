@@ -1,0 +1,23 @@
+<div class="pull-right">
+  <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
+</div>
+<h1><%= @text %></h1>
+<% @posts.each do |post| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= post.user %>
+        <div class="pull-right">
+          <%= link_to "Show", post_path(post) %>
+        </div>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <%= post %>
+      <br>
+      <div class="pull-right text-muted">
+        <%= post.created_at.to_formatted_s(:long_ordinal) %>
+      </div>
+    </div>
+  </div>
+<% end %>
