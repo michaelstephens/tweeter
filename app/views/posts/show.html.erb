@@ -1,10 +1,32 @@
+<div class="pull-right">
+ <%=link_to "Comment", new_comment_path(post_id: @post.id), class:"btn btn-primary"%>
+</div>
 <h1>
-  <%= link_to fa_icon("arrow-left"), posts_path %>
-  <%= @text %>
+ <%= link_to fa_icon("arrow-left"), posts_path %>
+ <%= @text %>
 </h1>
 <div class="media">
-  <div class="media-body">
-    <h4 class="media-heading"><%= @post.user %></h4>
-    <%= @post %>
-  </div>
+ <div class="media-body">
+   <h4 class="media-heading"><%= @post.user %></h4>
+   <%= @post %>
+   <br />
+   <div class="pull-right text-muted" style="font-size:0.9em;">
+     <%= @post.created_at.to_formatted_s(:long_ordinal) %>
+   </div>
+   <hr />
+ </div>
 </div>
+
+<% @comments.each do |comment| %>
+ <div class="media comment">
+   <div class="media-body">
+     <h4 class="media-heading"><%= comment.user %></h4>
+     <%= comment.content %>
+     <div class="pull-right text-muted" style="font-size:0.9em;">
+       <%= comment.created_at.to_formatted_s(:long_ordinal) %>
+     </div>
+     <hr />
+     <br />
+   </div>
+ </div>
+<% end %>
