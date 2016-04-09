@@ -1,0 +1,21 @@
+<h1>
+  <%= link_to fa_icon("arrow-left"), post_path(@post) %>
+  <%= @text %>
+</h1>
+
+<div class="media">
+  <div class="media-body">
+    <h4 class="media-heading"><%= @post.user %></h4>
+    <%= @post %>
+  </div>
+</div>
+
+<%= form_for Comment.new do |f| %>
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: "form-control" %>
+  </div>
+  <%= f.hidden_field :user_id, value: User.first.id %>
+  <%= f.hidden_field :post_id, value: @post.id %>
+  <%= f.submit "Create New Comment", class: "btn btn-default" %>
+<% end %>

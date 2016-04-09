@@ -1,9 +1,10 @@
-class Post < ActiveRecord::Base
+class Comment < ActiveRecord::Base
   belongs_to :user
-  has_many :comments
+  belongs_to :post
 
   validates :content, presence: true
   validates :user_id, presence: true
+  validates :post_id, presence: true
 
   def to_s
     content
