@@ -1,1 +1,12 @@
-<h1><%= @text %></h1>
+<h1>
+  <%= link_to fa_icon("arrow-left"), post_path(@post) %>
+  <%= @text %>
+</h1>
+
+<%= form_for @post do |f| %>
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: "form-control" %>
+  </div>
+  <%= f.submit "Update Post", class: "btn btn-default" %>
+<% end %>

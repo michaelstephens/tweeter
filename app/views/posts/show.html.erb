@@ -1,5 +1,8 @@
 <div class="pull-right">
- <%=link_to "Comment", new_comment_path(post_id: @post.id), class:"btn btn-primary"%>
+  <div class="btn-group">
+    <%=link_to "Comment", new_comment_path(post_id: @post.id), class:"btn btn-primary"%>
+    <%=link_to "Edit", edit_post_path(@post), class:"btn btn-default"%>
+  </div>
 </div>
 <h1>
  <%= link_to fa_icon("arrow-left"), posts_path %>
@@ -22,11 +25,11 @@
    <div class="media-body">
      <h4 class="media-heading"><%= comment.user %></h4>
      <%= comment.content %>
+     <br />
      <div class="pull-right text-muted" style="font-size:0.9em;">
        <%= comment.created_at.to_formatted_s(:long_ordinal) %>
      </div>
      <hr />
-     <br />
    </div>
  </div>
 <% end %>
