@@ -2,6 +2,8 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Name</th>
+      <th>Username</th>
       <th>Email</th>
       <th>Created At</th>
     </tr>
@@ -9,9 +11,12 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= user.name %></td>
+        <td><%= user.username %></td>
         <td><%= user.email %></td>
         <td><%= user.created_at.to_formatted_s(:long_ordinal) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= render 'sidebar' %>

@@ -6,7 +6,8 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <%= post.user %>
+        <%= post.user.name %>
+        <span style="color:#989898">@<%= post.user.username %></span>
         <div class="pull-right">
           <%= link_to "Show", post_path(post) %>
         </div>

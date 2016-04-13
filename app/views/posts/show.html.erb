@@ -1,7 +1,8 @@
 <div class="pull-right">
   <div class="btn-group">
-    <%=link_to "Comment", new_comment_path(post_id: @post.id), class:"btn btn-primary"%>
-    <%=link_to "Edit", edit_post_path(@post), class:"btn btn-default"%>
+    <%=link_to fa_icon("comment"), new_comment_path(post_id: @post.id), class:"btn btn-primary"%>
+    <%=link_to fa_icon("pencil"), edit_post_path(@post), class:"btn btn-default"%>
+    <%=link_to fa_icon("trash-o"), post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
   </div>
 </div>
 <h1>
