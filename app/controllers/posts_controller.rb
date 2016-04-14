@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def index
     @text = "Index"
-    @posts = Post.search(params[:search]).order(created_at: :desc)
+    @posts = Post.search(params[:search]).order(created_at: :desc).page(params[:page])
   end
 
   def new
@@ -18,8 +18,10 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.save
       redirect_to post_path(@post)
+      flash[:success] = "Post was created!"
     else
       redirect_to new_post_path
+      flash[:error] = @post.errors.messages.map{|e| "<i class='fa fa-minus'></i> <strong>#{e.flatten.first.to_s.titleize}</strong> #{e.flatten.last}"}.join('<br />')
     end
   end
 
@@ -32,8 +34,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.update post_params
       redirect_to post_path(@post)
+      flash[:success] = "Post was saved!"
     else
       redirect_to edit_post_path(@post)
+      flash[:error] = @post.errors.messages.map{|e| "<i class='fa fa-minus'></i> <strong>#{e.flatten.first.to_s.titleize}</strong> #{e.flatten.last}"}.join('<br />')
     end
   end
 
@@ -41,6 +45,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to root_path
+    flash[:success] = "Post was destroyed!"
   end
 
   private

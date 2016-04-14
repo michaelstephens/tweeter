@@ -11,7 +11,7 @@
 </h1>
 <div class="media">
  <div class="media-body">
-   <h4 class="media-heading"><%= @post.user %></h4>
+   <h4 class="media-heading"><%= @post.user.name %></h4>
    <%= @post %>
    <br />
    <div class="pull-right text-muted" style="font-size:0.9em;">
@@ -24,7 +24,13 @@
 <% @comments.each do |comment| %>
  <div class="media comment">
    <div class="media-body">
-     <h4 class="media-heading"><%= comment.user %></h4>
+     <h4 class="media-heading">
+       <div class="btn-group pull-right">
+         <%=link_to fa_icon("pencil"), edit_comment_path(comment), class:"btn btn-default"%>
+         <%=link_to fa_icon("trash-o"), comment_path(comment), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
+       </div>
+       <%= comment.user.name %>
+     </h4>
      <%= comment.content %>
      <br />
      <div class="pull-right text-muted" style="font-size:0.9em;">

@@ -1,0 +1,12 @@
+<h1>
+  <%= link_to fa_icon("arrow-left"), post_path(@comment.post) %>
+  <%= @text %>
+</h1>
+
+<%= form_for @comment do |f| %>
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: "form-control" %>
+  </div>
+  <%= f.submit "Update Comment", class: "btn btn-default" %>
+<% end %>

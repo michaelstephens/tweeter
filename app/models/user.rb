@@ -20,9 +20,6 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  def to_s
-  end
-
   def name
     "#{first_name} #{last_name}".titleize
   end
