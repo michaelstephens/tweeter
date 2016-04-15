@@ -1,0 +1,28 @@
+<%= form_for User.new do |f| %>
+  <div class="form-group">
+     <%= f.label :username %><br />
+     <%= f.text_field :username, class: "form-control" %>
+  </div>
+  <div class="form-group">
+     <%= f.label :email %><br />
+     <%= f.text_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+     <%= f.label :first_name %><br />
+     <%= f.text_field :first_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+     <%= f.label :last_name %><br />
+     <%= f.text_field :last_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+     <%= f.label :password %><br />
+     <%= f.password_field :password, class: "form-control" %>
+  </div>
+  <div class="form-group">
+     <%= f.label :password_confirmation %><br />
+     <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Create Account", class: "btn btn-primary" %>
+<% end %>

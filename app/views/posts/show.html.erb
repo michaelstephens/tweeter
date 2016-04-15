@@ -1,8 +1,10 @@
 <div class="pull-right">
   <div class="btn-group">
     <%=link_to fa_icon("comment"), new_comment_path(post_id: @post.id), class:"btn btn-primary"%>
-    <%=link_to fa_icon("pencil"), edit_post_path(@post), class:"btn btn-default"%>
-    <%=link_to fa_icon("trash-o"), post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
+    <% if @post.user == current_user %>
+      <%=link_to fa_icon("pencil"), edit_post_path(@post), class:"btn btn-default"%>
+      <%=link_to fa_icon("trash-o"), post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
+    <% end %>
   </div>
 </div>
 <h1>
@@ -25,10 +27,12 @@
  <div class="media comment">
    <div class="media-body">
      <h4 class="media-heading">
-       <div class="btn-group pull-right">
-         <%=link_to fa_icon("pencil"), edit_comment_path(comment), class:"btn btn-default"%>
-         <%=link_to fa_icon("trash-o"), comment_path(comment), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
-       </div>
+        <% if comment.user == current_user %>
+          <div class="btn-group pull-right">
+            <%=link_to fa_icon("pencil"), edit_comment_path(comment), class:"btn btn-default"%>
+            <%=link_to fa_icon("trash-o"), comment_path(comment), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
+          </div>
+       <% end %>
        <%= comment.user.name %>
      </h4>
      <%= comment.content %>

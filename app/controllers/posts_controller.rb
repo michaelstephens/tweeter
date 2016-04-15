@@ -28,6 +28,7 @@ class PostsController < ApplicationController
   def edit
     @text = "Edit"
     @post = Post.find(params[:id])
+    check_authorization(@post)
   end
 
   def update
@@ -43,13 +44,28 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to root_path
-    flash[:success] = "Post was destroyed!"
+    if check_authorization(@post)
+      @post.destroy
+      redirect_to root_path
+      flash[:success] = "Post was destroyed!"
+    end
   end
 
   private
   def post_params
-    params.require(:post).permit(:content, :user_id) if params[:post]
+    if params[:post]
+      params[:post][:user_id] = current_user.id
+      params.require(:post).permit(:content, :user_id)
+    end
+  end
+
+  def check_authorization(post)
+    unless post.user == current_user
+      redirect_to root_path
+      flash[:alert] = "Not Authorized"
+      return false
+    else
+      return true
+    end
   end
 end

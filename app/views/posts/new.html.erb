@@ -8,6 +8,5 @@
     <%= f.label :content %>
     <%= f.text_area :content, class: "form-control" %>
   </div>
-  <%= f.hidden_field :user_id, value: User.first.id %>
   <%= f.submit "Create New Post", class: "btn btn-default" %>
 <% end %>

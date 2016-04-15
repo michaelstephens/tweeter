@@ -5,7 +5,7 @@
 
 <div class="media">
   <div class="media-body">
-    <h4 class="media-heading"><%= @post.user %></h4>
+    <h4 class="media-heading"><%= @post.user.name %></h4>
     <%= @post %>
   </div>
 </div>
@@ -15,7 +15,6 @@
     <%= f.label :content %>
     <%= f.text_area :content, class: "form-control" %>
   </div>
-  <%= f.hidden_field :user_id, value: User.first.id %>
   <%= f.hidden_field :post_id, value: @post.id %>
   <%= f.submit "Create New Comment", class: "btn btn-default" %>
 <% end %>
