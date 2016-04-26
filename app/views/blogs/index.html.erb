@@ -1,0 +1,33 @@
+<div class="pull-right">
+  <%= link_to "New Blog", new_blog_path, class: "btn btn-primary" %>
+</div>
+<h1><%= @text %></h1>
+<% @blogs.each do |blog| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= blog.user.name %>
+        <span style="color:#989898">@<%= blog.user.username %></span>
+        <div class="pull-right">
+          <%= link_to "Show", blog_path(blog) %>
+        </div>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <%= blog.content %>
+      <br>
+      <% blog.tags.split(',').each do |tag| %>
+        <span class="label label-default"><%= tag %></span>
+      <% end %>
+      <div class="pull-right text-muted">
+        <%= blog.created_at.to_formatted_s(:long_ordinal) %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="text-center">
+  <%= paginate @blogs, theme: "twitter-bootstrap-3" %>
+</div>
+
+<%= render 'sidebar' %>

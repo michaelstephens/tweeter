@@ -1,0 +1,26 @@
+<div class="pull-right">
+  <div class="btn-group">
+    <% if @blog.user == current_user %>
+      <%=link_to fa_icon("pencil"), edit_blog_path(@blog), class:"btn btn-default"%>
+      <%=link_to fa_icon("trash-o"), blog_path(@blog), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger"%>
+    <% end %>
+  </div>
+</div>
+<h1>
+ <%= link_to fa_icon("arrow-left"), blogs_path %>
+ <%= @text %>
+</h1>
+<div class="media">
+ <div class="media-body">
+   <h4 class="media-heading"><%= @blog.user.name %></h4>
+   <%= @blog.content %>
+   <br />
+   <% @blog.tags.split(',').each do |tag| %>
+     <span class="label label-default"><%= tag %></span>
+   <% end %>
+   <div class="pull-right text-muted" style="font-size:0.9em;">
+     <%= @blog.created_at.to_formatted_s(:long_ordinal) %>
+   </div>
+   <hr />
+ </div>
+</div>

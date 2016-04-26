@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery!
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :blogs, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users
   resources :user_sessions
   resources :posts
+  resources :blogs
   resources :comments, except: [:index, :show]
 
   get 'login' => 'user_sessions#new', :as => :login
